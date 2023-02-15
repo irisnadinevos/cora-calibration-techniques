@@ -22,7 +22,7 @@ if __name__ == "__main__":
     
     # Set the parameters
     conv_operator = 'GCNConv'
-    calibration_method = None
+    calibration_method = None # possible inputs: ['PS', 'TS', 'MCd', 'AvU', 'GCL']
     random_seed = 0
     
     params = {
