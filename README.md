@@ -1,13 +1,3 @@
 # cora-calibration-techniques
 
-This repository contains PyTorch code to evaluate different methods to improve calibration for node classification on the Cora dataset [1].
-
-
-
-## References
-<a id="1">[1]</a> 
-Sen, Prithviraj, et al.
-"Collective classification in network data."
-AI magazine 29.3 (2008): 93-93.
-
-  
+This repository contains PyTorch code for the paper "Calibration techniques for node classification using graph neural networks on medical image data", which is currently under review for MIDL 2023 Conference.
