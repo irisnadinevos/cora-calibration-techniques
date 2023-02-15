@@ -116,7 +116,7 @@ class Tester:
             else: # multiclass classification
                 acc = balanced_accuracy_score(target_mask, confs_mask.argmax(axis=1))
         
-        elif self.params[config.KEY_CALIBRATION] == 'Platt':
+        elif self.params[config.KEY_CALIBRATION] == 'PS':
             
             # Perform Platt Scaling
             confs_mask_uncalibrated = F.softmax(out[data.val_mask], dim=1) # ON VALIDATION SET
@@ -138,7 +138,7 @@ class Tester:
         
         # Get reliability diagrams and expected calibration error (ECE)
         if dataset.num_classes == 2 and self.params[config.KEY_CALIBRATION] != 'TS' \
-            and self.params[config.KEY_CALIBRATION] != 'Platt':
+            and self.params[config.KEY_CALIBRATION] != 'PS':
                 ece = ece_score.measure(np.array(confs_mask[:,1]), np.array(target_mask))
                 plot_reliability_diagram(np.array(confs_mask[:,1]), np.array(target_mask), legend=[self.params[config.KEY_EXP_NAME]])
             
@@ -147,7 +147,7 @@ class Tester:
             plot_reliability_diagram(np.array(confs_mask), np.array(target_mask), legend=[self.params[config.KEY_EXP_NAME]])
             
         
-        if self.params[config.KEY_CALIBRATION] == 'TS' or self.params[config.KEY_CALIBRATION] == 'Platt' or\
+        if self.params[config.KEY_CALIBRATION] == 'TS' or self.params[config.KEY_CALIBRATION] == 'PS' or\
             self.params[config.KEY_CALIBRATION] == 'MCd':
             exp_name = exp_name.replace('uncalibrated', self.params[config.KEY_CALIBRATION])
             
